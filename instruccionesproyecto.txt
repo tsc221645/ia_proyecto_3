@@ -1,0 +1,64 @@
+Proyecto #3
+CC3085 Inteligencia Artificial
+De manera individual, realice un proyecto donde implemente los conceptos vistos de
+clase de probabilidad y redes bayesianas para construir un clasificador de SPAM/HAM.
+Entrega
+• Trabajo escrito: 14 de mayo, 23;59
+• Formato: PDF
+• Presentación: 14 de mayo, presencial, periodo de clase
+Trabajo escrito
+Elabore un reporte detallado sobre los pasos necesarios para la correcta construcción
+de un filtro SPAM/HAM usando bayes.
+La estructura mínima de su reporte debe comprender:
+a. Análisis de datos exploratorio (EDA).
+Características sobre el data set que considere relevantes o
+interesantes para explicar la diferencia sobre los grupos de SPAM/HAM.
+b. Limpieza de datos
+Explique los pasos y beneficios de todos los procesos de limpieza a los
+que someta su información:
+Ex. Eliminar stop words, lemmatization, stemming.
+c. Modelo
+Explique el paso a paso de los cálculos necesarios para calcular la
+probabilidad que el texto permanezca a SPAM o HAM.
+Utilice la formulas en el anexo de este documento.
+d. Pruebas de rendimiento.
+Considerando que generó un modelo utilizando un subconjunto de datos
+de entrenamiento, mida el rendimiento de su modelo sobre el dataset de
+prueba. (Divida el dataset original en training 80% y testing 20%)
+Basándose en los valores de la matriz de confusión, obtenga valores de
+recall, precisión y f1-score de su modelo. Explore distintos valores de
+threshold de clasificación y encuentre el que más le convenga.
+e. Discusión de resultados
+Discuta el significado de los valores de las métricas obtenidas en las
+pruebas de rendimiento. Explique el impacto de las decisiones que tomó
+desde el proceso de limpieza y los cálculos del modelo y plantee el
+impacto positivo o negativo que cada uno de estos pudo tener en el
+rendimiento de su modelo.
+Siéntanse en la libertad de agregar fases adicionales en caso lo consideren necesario.
+Presentación en vivo
+En conjunto con la programación del clasificador, debe construir un módulo que
+cumpla con lo siguiente:
+- Acepta el ingreso de un prompt tipo texto.
+- Retorna la posibilidad de que el texto anterior sea SPAM y también las 3
+palabras con mayor poder predictivo (mayor probabilidad de Spam).
+Rubrica
+Trabajo escrito
+EDA 10 pts
+Limpieza de datos 10 pts
+Modelo 10 pts
+Pruebas de rendimiento 20 pts
+Discusión 20 pts
+Presentación presencial Resultados 30 pts
+Anexo
+Probabilidad de que un texto sea SPAM dado que contiene la palabra W:
+𝑃(𝑆|𝑊) = 𝑃(𝑊|𝑆)𝑃(𝑆)
+𝑃(𝑊|𝑆)𝑃(𝑆) + 𝑃(𝑊|𝐻)𝑃(𝐻)
+Donde,
+P(S|W) es la probabilidad de que un texto sea SPAM dado que contiene la palabra W.
+P(W|S) es la probabilidad de la palabra W aparezca en un texto que es SPAM.
+P(W|H) es la probabilidad de la palabra W aparezca en un texto que es HAM.
+P(S) es la probabilidad de que cualquier texto sea SPAM.
+P(H) es la probabilidad de que cualquier texto sea HAM.
+Probabilidad de que un texto sea SPAM dado que contiene las palabras W1 a Wn:
+𝑃(𝑆|𝑾) = 𝑃!𝑃" … 𝑃#
+𝑃!𝑃" … 𝑃# + (1 − 𝑃!)(1 − 𝑃") … (1 − 𝑃#)
