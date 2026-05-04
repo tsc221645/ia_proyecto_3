@@ -14,7 +14,6 @@ from dataclasses import dataclass, field
 from typing import Iterable
 
 import pandas as pd
-from nltk.stem import PorterStemmer
 from nltk.tokenize import wordpunct_tokenize
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split
@@ -58,7 +57,6 @@ class SpamHamBayesClassifier:
     min_word_probability: float = 0.01
     max_word_probability: float = 0.99
     stopwords: set[str] = field(default_factory=get_stopwords)
-    stemmer: PorterStemmer = field(default_factory=PorterStemmer)
     prior_spam: float = 0.0
     prior_ham: float = 0.0
     word_spam_probability: dict[str, float] = field(default_factory=dict)
@@ -66,11 +64,11 @@ class SpamHamBayesClassifier:
     vocabulary: set[str] = field(default_factory=set)
 
     def preprocess(self, text: str) -> list[str]:
-        """Tokeniza, convierte a minusculas, elimina ruido/stopwords y aplica stemming."""
+        """Tokeniza, convierte a minusculas y elimina ruido/stopwords."""
         tokens = wordpunct_tokenize(str(text).lower())
         tokens = [token for token in tokens if re.fullmatch(r"[a-z]+", token)]
         tokens = [token for token in tokens if token not in self.stopwords]
-        return [self.stemmer.stem(token) for token in tokens]
+        return tokens
 
     def fit(self, messages: Iterable[str], labels: Iterable[str]) -> "SpamHamBayesClassifier":
         train_df = pd.DataFrame({"message": list(messages), "label": list(labels)})
